@@ -2,7 +2,9 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
-/[Ll]ibrary/
+/[Ll]ibrary/*
+!/[Ll]ibrary/LastSceneManagerSetup.txt
+!/[Ll]ibrary/SceneVisibilityState.asset
 /[Tt]emp/
 /[Oo]bj/
 /[Bb]uild/
@@ -80,4 +82,5 @@ Thumbs.db.meta
 *.DS_Store
 
 # VS Code
-*.vscode
+.vscode/
+
