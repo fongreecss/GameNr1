@@ -6,6 +6,7 @@ public class animationStateController : MonoBehaviour
 {
     Animator animator;
     int isWalkingHash;
+    int isRunningHash;
 
     // Start 
     void Awake()
@@ -17,6 +18,7 @@ public class animationStateController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         isWalkingHash = Animator.StringToHash("isWalking");
+        isRunningHash = Animator.StringToHash("isRunning");
         Debug.Log(animator);
     }
 
@@ -25,7 +27,9 @@ public class animationStateController : MonoBehaviour
     {
         bool isWalking = animator.GetBool(isWalkingHash);
         bool forwardPressed = Input.GetKey(KeyCode.W);
-        
+        bool isRunning = animator.GetBool(isRunningHash);
+        bool runPressed = Input.GetKey(KeyCode.LeftShift);
+
         // if player presses w key
         if (!isWalking && forwardPressed)
         {
@@ -38,5 +42,17 @@ public class animationStateController : MonoBehaviour
             // then set isWalking to false
             animator.SetBool(isWalkingHash, false);
         }
+
+        if (!isRunning && (forwardPressed && runPressed))
+        {
+            animator.SetBool(isRunningHash, true);
+        }
+
+        if (isRunning && (!forwardPressed || !runPressed))
+        {
+            animator.SetBool(isRunningHash, false);
+        }
+
+        
     }
 }
